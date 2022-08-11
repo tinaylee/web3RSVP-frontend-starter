@@ -1,6 +1,6 @@
 import abiJSON from "./Web3RSVP.json"
 import { ethers } from "ethers";
-
+//Connects contract to our front end
 function connectContract() {
     const contractAddress = "0xDb3122A3850206c1A5838BB2091bbD43E1d740C4";
     const contractABI = abiJSON.abi;
