@@ -17,7 +17,8 @@ import {
   LinkIcon
 } from "@heroicons/react/outline";
 
-function Event( {event}) {
+function Event({event}) {
+  console.log("EVENT:" , event)
   const { data: account } = useAccount();
   const [success, setSuccess] = useState(null);
   const [message, setMessage] = useState(null);
@@ -63,7 +64,6 @@ function Event( {event}) {
     }
   };
 
-  console.log("EVENT: ", event)
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <Head>
