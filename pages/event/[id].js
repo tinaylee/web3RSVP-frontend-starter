@@ -27,7 +27,7 @@ function Event({event}) {
 
   function checkIfAlreadyRSVPed() {
     if (account) {
-      for (let i=0; i < event.rsvps.length; i++) {
+      for (let i = 0; i < event.rsvps.length; i++) {
         const thisAccount = account.address.toLowerCase();
         if (event.rsvps[i].attendee.id.toLowerCase() == thisAccount) {
           return true;
@@ -47,9 +47,9 @@ function Event({event}) {
         });
         setLoading(true);
         console.log("Minting...", txn.hash);
-
+  
         await txn.wait();
-        console.log("Minted--", txn.hash);
+        console.log("Minted -- ", txn.hash);
         setSuccess(true);
         setLoading(false);
         setMessage("Your RSVP has been created successfully.");
@@ -64,6 +64,7 @@ function Event({event}) {
     }
   };
 
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <Head>
@@ -73,7 +74,7 @@ function Event({event}) {
       </Head>
       <section className="relative py-12">
         {loading && (
-          <Alert 
+          <Alert
             alertType={"loading"}
             alertBody={"Please wait"}
             triggerAlert={true}
@@ -81,7 +82,7 @@ function Event({event}) {
           />
         )}
         {success && (
-          <Alert 
+          <Alert
             alertType={"success"}
             alertBody={message}
             triggerAlert={true}
@@ -89,7 +90,7 @@ function Event({event}) {
           />
         )}
         {success === false && (
-          <Alert 
+          <Alert
             alertType={"failed"}
             alertBody={message}
             triggerAlert={true}
@@ -110,40 +111,40 @@ function Event({event}) {
             <p>{event.description}</p>
           </div>
           <div className="max-w-xs w-full flex flex-col gap-4 mb-6 lg:mb-0">
-                {event.eventTimestamp > currentTimestamp ? (
-                  account ? (
-                    checkIfAlreadyRSVPed() ? (
-                      <>
-                        <span className="w-full text-center px-6 py-3 text-base font-medium rounded-full text-teal-800 bg-teal-100">
-                          You have RSVPed! 🙌
-                        </span>
-                        <div className="flex item-center">
-                          <LinkIcon className="w-6 mr-2 text-indigo-800"/>
-                          <a  
-                            className="text-indigo-800 truncate hover:underline"
-                            href={event.link}
-                          >
-                            {event.link}
-                          </a>
-                        </div>
-                      </>
-                    ) : (
-                      <button
-                        type="button"
-                        className="w-full items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        onClick={newRSVP}
-                        >
-                          RSVP for {ethers.utils.formatEther(event.deposit)} MATIC
-                        </button>
-                    )
-                  ) : (
-                    <ConnectButton />
-                  )
+            {event.eventTimestamp > currentTimestamp ? (
+              account ? (
+                checkIfAlreadyRSVPed() ? (
+                  <>
+                    <span className="w-full text-center px-6 py-3 text-base font-medium rounded-full text-teal-800 bg-teal-100">
+                      You have RSVPed! 🙌
+                    </span>
+                    <div className="flex item-center">
+                      <LinkIcon className="w-6 mr-2 text-indigo-800" />
+                      <a
+                        className="text-indigo-800 truncate hover:underline"
+                        href={event.link}
+                      >
+                        {event.link}
+                      </a>
+                    </div>
+                  </>
                 ) : (
-                  <span className="w-full text-center px-6 py-3 text-base font-medium rounded-full border-2 border-gray-200">
-                    Event has ended
-                  </span>
-                )}
+                  <button
+                    type="button"
+                    className="w-full items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    onClick={newRSVP}
+                  >
+                    RSVP for {ethers.utils.formatEther(event.deposit)} MATIC
+                  </button>
+                )
+              ) : (
+                <ConnectButton />
+              )
+            ) : (
+              <span className="w-full text-center px-6 py-3 text-base font-medium rounded-full border-2 border-gray-200">
+                Event has ended
+              </span>
+            )}
             <div className="flex item-center">
               <UsersIcon className="w-6 mr-2" />
               <span className="truncate">
@@ -204,10 +205,10 @@ export async function getServerSideProps(context) {
           }
         }
       }
-      `,
-      variables: {
-        id: id,
-      },
+    `,
+    variables: {
+      id: id,
+    },
   });
 
   return {

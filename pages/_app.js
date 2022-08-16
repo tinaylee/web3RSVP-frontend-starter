@@ -32,7 +32,7 @@ export default function MyApp({ Component, pageProps }) {
       <RainbowKitProvider chains={chains}>
         <ApolloProvider client={client}>
           <Layout>
-            <Component {...pageProps}/>
+            <Component {...pageProps} />
           </Layout>
         </ApolloProvider>
       </RainbowKitProvider>
